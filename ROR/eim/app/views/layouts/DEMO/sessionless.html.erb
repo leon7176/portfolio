@@ -1,0 +1,46 @@
+<% content_for :layout_js do %>
+  <%= javascript_include_tag "application", "data-turbolinks-track"=>true %>
+
+  <%= render 'shared/DEMO/core/sessionless_namespace.js' %>
+
+  <%= javascript_include_tag "DEMO/core/utils" %>
+
+  <%= javascript_include_tag "DEMO/component/form/language_form",
+    "DEMO/component/flash/flash_agent",
+    "DEMO/component/flash/flash_item" %>
+
+  <%= javascript_include_tag "DEMO/frame/layout/flash", "DEMO/frame/layout/sessionless_header" %>
+
+  <%= javascript_include_tag "DEMO/sessionless-script" %>
+  
+  <%= yield :page_js %>
+
+  <%= javascript_tag do %><%= yield :raw_js %><% end %>
+
+<% end %>
+
+<% content_for :layout_css do %>
+  <%= stylesheet_link_tag "DEMO/sessionless-style", "DEMO/sessionless-style-extend" %>
+  <%= yield :page_css %>
+<% end %>
+
+<% content_for :shim do %>
+  <!--[if lt IE 10]>
+    <%= stylesheet_link_tag "DEMO/style-login-ie" %>
+    <%= javascript_include_tag "DEMO/javascript-ie" %>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+<% end %>
+
+<% content_for :flash do %>
+  <%= render 'shared/DEMO/helper/render_flash.js' %>  
+  <div id="flash-agent"></div>
+<% end %>
+
+<% content_for :content do %>
+  <%= yield %>
+  <%= yield :hidden %>
+  <%= render 'shared/DEMO/form/language_form' %>
+<% end %>
+
+<%= render template: "layouts/DEMO/template" %>

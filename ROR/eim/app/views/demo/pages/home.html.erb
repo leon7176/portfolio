@@ -1,0 +1,64 @@
+<% provide(:title, 'Home') %>
+
+<% content_for :page_js do %>
+  <%= javascript_include_tag "DEMO/script" %>
+  <%= javascript_include_tag "DEMO/frame/composing" %>
+	<%= javascript_include_tag "DEMO/page/pages_home" %>
+<% end %>
+
+<% content_for :left_col do %>
+	<%= render 'shared/DEMO/frame/layout/default_left_sidebar' %>
+<% end %>
+
+<% content_for :hidden do %>
+	<%= render 'shared/DEMO/form/post_hidden_form' %>
+	<%= render 'shared/DEMO/form/post_edit_hidden_form' %>
+	<%= render 'shared/DEMO/form/task_hidden_form' %>
+	<%= render 'shared/DEMO/form/task_edit_hidden_form' %>
+	<%= render 'shared/DEMO/form/event_hidden_form' %>
+	<%= render 'shared/DEMO/form/event_edit_hidden_form' %>
+	<%= render 'shared/DEMO/form/private_message_hidden_form' %>
+	<%= render 'shared/DEMO/form/create_task_form' %>
+	<%= render 'shared/DEMO/form/edit_task_form' %>
+	<%= render 'shared/DEMO/form/create_event_form' %>
+	<%= render 'shared/DEMO/form/edit_event_form' %>
+	<%= render 'shared/DEMO/form/send_message_form' %>
+<% end %>
+
+
+<div class="user-function">
+	<div class="functions">
+		<%= render 'shared/DEMO/frame/composing' %>
+	</div>
+</div>
+
+<div class="wall">
+	<% msg_unread_num = current_user.tome_unread_feeds_count(current_network_id) %>
+
+	<form id="filter-panel">
+		<select name="all" id="all-unread">
+			<option value="all">All</option>
+			<option value="unread">Unread Feeds</option>
+		</select>
+		<ul class="filter">
+			<li data-filter="all">All</li>
+
+			<li class="active" data-filter="following">Following
+				<!-- TODO <span class="count"></span> -->
+			</li>
+			<li data-filter="tome">@ Me			
+				<% if msg_unread_num > 0 %>
+					<span class="count"><%= msg_unread_num %></span>
+				<% end %>
+			</li>
+			<li data-filter="mypost">My Post</li>
+		</ul>
+		<div class="police">
+			<span class="minus">A-</span>
+			<span class="plus">A+</span>
+		</div>
+		<div class="clear"></div>
+	</form>
+
+	<ul class="wall-content"></ul>
+</div>

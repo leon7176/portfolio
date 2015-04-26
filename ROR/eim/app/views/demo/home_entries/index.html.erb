@@ -1,0 +1,35 @@
+<% content_for :header do %>
+  <%= render 'shared/DEMO/frame/layout/sessionless_header' %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render 'shared/DEMO/frame/layout/sessionless_footer' %>
+<% end %>
+
+
+<div id="content" class="signup">
+    <section>
+        <div style="height:200px;"></div>
+        <%= form_for(@user, :html => {id: "signup"}) do |f| %>
+            <%= render 'shared/DEMO/frame/error_messages', object: f.object %>
+            <h2>企业即时通讯合作平台</h2>
+            <p>&nbsp;</p>
+            <p>促进企业跨部门、跨地域、跨公司的交流、分享和合作。</p>
+            <p>&nbsp;</p>            
+            <div class="line"></div>
+            <p>&nbsp;</p>
+            <p>赶快注册 , 免费体验吧 : </p>
+            <p>&nbsp;</p>
+            <div>
+                <label>Email :</label>
+                <%= f.text_field :email, placeholder: "推荐企业邮箱", maxlength: "255" %>
+                <%= f.hidden_field :in_home, value: "true" %>
+            </div>
+            <%= f.submit "Sign up" %>
+            <span style="color:#a0a0a0;">or</span>
+            <a href="<%= signin_path %>">Login</a>
+            <div class="line"></div>
+        <% end %>
+        
+    </section>
+</div>

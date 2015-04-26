@@ -1,0 +1,84 @@
+<% content_for :layout_js do %>
+  <%= javascript_include_tag "application", "data-turbolinks-track"=>true %>
+
+  <%= render 'shared/DEMO/core/namespace.js' %>
+
+  <%= javascript_include_tag "DEMO/core/utils", "DEMO/core/model", "DEMO/core/api" %>
+
+  <%= javascript_include_tag "DEMO/component/post/article_item", 
+    "DEMO/component/post/reply_item",
+    "DEMO/component/user/user_item", 
+    "DEMO/component/user/user_profile_item", 
+    "DEMO/component/group/group_record_item", 
+    "DEMO/component/group/group_member_item",
+    "DEMO/component/file/file_item",
+    "DEMO/component/file/file_uploader",
+    "DEMO/component/task/task_item",
+    "DEMO/component/task/task_detail_form",    
+    "DEMO/component/event/event_item",
+    "DEMO/component/poll/poll_item",
+    "DEMO/component/flash/flash_agent",
+    "DEMO/component/flash/flash_item",
+    "DEMO/component/form/language_form",
+    "DEMO/component/form/invite_form",
+    "DEMO/component/form/send_message_form",
+    "DEMO/component/form/post_form",
+    "DEMO/component/form/reply_form",
+    "DEMO/component/form/upload_file_form",
+    "DEMO/component/form/edit_post_form",
+    "DEMO/component/form/edit_poll_form",
+    "DEMO/component/form/update_file_form",
+    "DEMO/component/form/create_task_form",
+    "DEMO/component/form/edit_task_form",
+    "DEMO/component/form/create_event_form",
+    "DEMO/component/form/edit_event_form" %>
+
+  <%= javascript_include_tag "DEMO/frame/layout/flash", "DEMO/frame/layout/left_sidebar", "DEMO/frame/layout/header" %>
+
+  <%= yield :page_js %>
+
+  <%= javascript_tag do %><%= yield :raw_js %><% end %>
+
+<% end %>
+
+<% content_for :layout_css do %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track"=>true %>
+  <%= stylesheet_link_tag "DEMO/style", "DEMO/style-extend" %>
+  <%= yield :page_css %>
+
+  <style><%= yield :raw_css %></style>
+<% end %>
+
+<% content_for :shim do %>
+  <!--[if lt IE 10]>
+    <%= stylesheet_link_tag "DEMO/style-ie" %>
+    <%= javascript_include_tag "DEMO/script-ie" %>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+<% end %>
+
+<% content_for :flash do %>
+  <%= render 'shared/DEMO/helper/render_flash.js' %>  
+  <div id="flash-agent"></div>
+<% end %>
+
+<% content_for :header do %>
+  <div class="white-mask"></div>
+  <%= render 'shared/DEMO/frame/layout/header' %>
+<% end %>
+
+<% content_for :content do %>
+  <section>
+    <%= yield :left_col %>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+
+    <%= yield :right_col %>
+  </section>
+
+  <%= yield :hidden %>
+  <%= render 'shared/DEMO/form/language_form' %>
+<% end %>
+<%= render template: "layouts/DEMO/template" %>

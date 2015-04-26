@@ -1,0 +1,44 @@
+<% provide(:title, 'Login') %>
+
+<% content_for :page_js do %>
+  <%= javascript_include_tag "DEMO/page/sessions_new" %>
+<% end %>
+
+<% content_for :header do %>
+  <%= render 'shared/DEMO/frame/layout/sessionless_header_simple' %>
+<% end %>
+
+<div id="content" class="login">
+    <section style="display:block;margin:0 auto;width:782px;">
+        <div style="height:120px;"></div>
+        <h2>Welcome to Linchat!</h2>
+        <br><br>
+        <%= form_tag('/sessions', style: "float:left") do |f| %>
+            <div style="position:relative;margin-bottom:30px;">
+                <label style="display:block;">Email :</label>
+                <%= text_field_tag "email", email_last_signed_in? ? email_last_signed_in : "" %>
+                <% if email_last_signed_in? %><%= link_to "Not you?", signin_clear_path, :style => "font-size:14px;position:absolute;display:block;bottom:2px;height:14px" %><% end %>
+            </div>            
+            <div>
+                <label style="display:block;">Password:</label>
+                <%= password_field_tag "password", nil %>
+            </div>
+            <div class="links">
+                <div class="input-checkbox">
+                    <%= check_box_tag 'remember_me', nil, false %>
+                    <span class="checkbox"></span>
+                    <span class="value" style="font-size:14px">Remember me</span>                    
+                    <a href="<%= new_password_reset_path %>" style="float:right;margin-right:40px;">Forgot password?</a>
+                </div>
+            </div>
+            <%= submit_tag "Login" %>
+        <% end %>
+        <form class="form-next">
+            <p style="font-size:20px;font-weight:bold;">Don't have an account?</p>
+            <p>Click the button to sign up!</p>
+            <div style="height:95px;"></div>
+            <a href="<%= signup_path %>" class="submit" style="margin:0;text-decoration:none;">Sign up</a>
+        </form>
+
+    </section>
+</div>

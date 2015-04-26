@@ -1,0 +1,33 @@
+<% provide(:title, 'Logout') %>
+
+<% content_for :header do %>
+  <%= render 'shared/DEMO/frame/layout/sessionless_header' %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render 'shared/DEMO/frame/layout/sessionless_footer' %>
+<% end %>
+
+
+<div id="content" class="login">
+    <section>
+        <div style="height:150px;"></div>
+        <center>
+            <img src="<%= asset_path 'DEMO/img/exit.png' %>"/>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <h2>You have logged out</h2>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>Welcome to use Linchat again </p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <div class="links">
+                <a href="<%= signin_path %>">Login</a>     <a href="<%= signup_path %>">Sign up</a>
+            </div>
+        </center>
+        <div style="height:150px;"></div>
+    </section>
+</div>

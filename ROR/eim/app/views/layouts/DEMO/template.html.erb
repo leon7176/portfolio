@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <%= csrf_meta_tags %>
+  <title>
+    <%= content_for?(:title) ? full_title(yield(:title)) : "Linchat" %>
+  </title>
+  <%= yield(:layout_js) %>
+  <%= yield(:layout_css) %>
+  <%= yield(:shim) %>
+</head>
+<body class="<%= content_for?(:left_col) ? ( content_for?(:right_col) ? 'three-column' : 'two-column' ): 'one-column' %>">  
+  <%= yield :flash %>
+  <%= yield :header %>
+  <%= content_for?(:content) ? yield(:content) : yield %>  
+  <%= yield :footer %>  
+</body>
+
+</html>

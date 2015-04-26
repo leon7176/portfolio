@@ -1,0 +1,2 @@
+module Demo::PagesHelper
+end

@@ -1,0 +1,2 @@
+module Demo::GroupsHelper
+end

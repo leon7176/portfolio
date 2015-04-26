@@ -1,0 +1,11 @@
+defaults: &defaults
+  theme: 'DEMO'
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults

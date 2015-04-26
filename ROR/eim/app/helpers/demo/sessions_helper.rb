@@ -1,0 +1,2 @@
+module Demo::SessionsHelper
+end

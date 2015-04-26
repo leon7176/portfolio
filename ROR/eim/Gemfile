@@ -1,0 +1,74 @@
+source 'https://rubygems.org'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.0'
+gem 'bootstrap-sass', '2.3.2.0'
+
+# Use mysql as the database for Active Record
+gem 'mysql2'
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.0'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
+gem 'jquery-turbolinks'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.1'
+
+gem 'will_paginate', '~> 3.0.0'
+gem 'bootstrap-will_paginate', '~> 0.0.9'
+
+# Use Font Awesome
+gem 'font-awesome-sass'
+
+gem 'carrierwave', '~> 0.9.0'
+gem 'mini_magick'
+
+# Using Sidekiq to send emails asynchronously
+gem 'sidekiq'
+
+# Use thinking-sphinx
+gem 'thinking-sphinx', '~> 3.1.0'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano', group: :development
+
+gem 'rails-i18n'
+
+# Use debugger
+gem 'debugger', group: [:development, :test]
+
+gem 'better_errors' # better errors pages (https://github.com/charliesome/better_errors)
+gem 'binding_of_caller' # console for better errors
+gem 'jazz_hands' # cool rails console `rails c` (https://github.com/nixme/jazz_hands)
+gem 'quiet_assets' # speed up assets & clear log (https://github.com/evrone/quiet_assets)
+# gem 'bullet' # optimize queries (https://github.com/flyerhzm/bullet) 
+gem "bullet", :group => "development"
