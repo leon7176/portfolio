@@ -7,12 +7,52 @@
     iv. 前端異步編程
    
 * 代碼倉庫的說明：
-  - 提取了 以下頁面(包含 routes/controller/view 部份的代碼):
+  - 提取了 原項目中的3個頁面(包含 routes/controller/view 部份的代碼)作為演示:
     1. 產品首頁面(介紹頁面)
     2. 用戶登入頁面
-    3. 首頁面(用戶已登入) 
+    3. 首頁面
     
- * 目錄結構/文件的說明：
+  - 建議參閱的代碼 
+    -- 整體代碼倉庫代碼
+	> 可關注: 
+	    1. 遵守統一的前端編程(HTML5)的代碼規範。
+	    2. 根據文件意圖所作的目錄分類設計。(設計目標:代碼結構清晰)
+
+    -- eim/config/routes : 
+         > 可關注: 
+	    1.路由規則的歸整與劃分 
+         
+    -- eim/app/views/layouts/DEMO :  
+	 > 可關注: 
+	    1. main與template布局之間的包含關係
+	    2. template布局中使用yield方法, 將view頁面做了最簡要地的劃分(抽象)
+	    3. main布局中對載入動態腳本分類與順序的限定, 可滿足所有頁面實現上的需求
+	 
+    -- eim/app/views/demo/pages/home.html.erb
+	> 可關注: 
+	    1. 由於套用(上述的)main布局, 能夠透過 content_for 方法重載(override)布局中的默認設定。
+	    2. home頁面只包含了最簡潔的實現代碼, 其餘代碼皆為引入可被重用的局部樣板, 
+	      或透過動態腳本初始View元件
+
+    -- eim/app/controllers/demo/api_controller.rb
+	> 可關注: 
+	    1. 統一封裝了多組Web API的Controller實現於api_controller.rb中。(確保後端接口實現的一致性)。
+	    2. 數據返回形式的設計(設計目標為:通用性, 適用性)。
+	      
+    -- eim/app/assets/javascripts/DEMO/component/post/article_item.js    
+	> 可關注: 
+	    1. 透過將View元件包裝為jQuery Plugin方式解決View元件重用的問題。
+	    2. View元件內部實現統一採用MVC設計模式, 解決View元件實現耦合問題。
+
+    -- eim/app/assets/javascripts/DEMO/core/model.js    
+    -- eim/app/assets/javascripts/DEMO/core/api.js    
+	> 可關注: 
+	    1. 實現了一套 EIM.API.Info 接口, 用於解決後端與瀏覽器之間數據的保存與訪問問題。
+	    2. 統一封裝了多組AJAX請求(調用Web API)的接口於api.js中。(確保前端接口實現的一致性)
+	    3. 接口型式的設計(包含: 接口名稱,請求參數與返回數據的變量設計)。
+	    
+    
+ * 目錄結構/文件的簡要說明：
   eim/
 	  config/ 
 		  routes	<--  請求路由的配置
@@ -21,7 +61,8 @@
 		  seeds	<--  預先數據的創建腳本
 	  app/
 		  assests/ <--  前端靜態資源	
-			  javascripts/	<-- 頁面載入時運行的動態腳本, 依照腳本意圖拆分成更細粒度的腳本, 設計目標為:使腳本的實現可以被模塊化、可被復用
+			  javascripts/	<-- 頁面載入時運行的動態腳本, 依照腳本意圖拆分成更細粒度的腳本, 
+							設計目標為:使腳本的實現可以被模塊化、可被復用
 				DEMO/
 					component/
 					core/
@@ -51,7 +92,8 @@
 			  demo/	<--  demo scope View樣板 (與demo scope controller相對應)
 			  
 			  layouts/  <-- View 布局部份
-				DEMO/ <-- 為demo意圖, 定制DEMO布局, 包含一套父布局 --- template, 兩套子布局：main與sessionless(皆繼承至 template布局)
+				DEMO/ <-- 為demo意圖, 定制DEMO布局, 包含一套父布局 --- template, 
+						      兩套子布局：main與sessionless(皆繼承至 template布局)
 				      main.html.erb
 				      sessionless.html.erb
 				      template.html.erb		      

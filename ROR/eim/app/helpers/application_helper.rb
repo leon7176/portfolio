@@ -9,9 +9,4 @@ module ApplicationHelper
 			"#{base_title} - #{page_title}"
 		end
 	end
-
-	def show_flash_within_ajax_response
-		@embed_str = "$('#flash').html('#{escape_javascript raw(flash_display)}')"
-		@embed_str
-	end
 end
