@@ -55,14 +55,14 @@
  * 目錄結構/文件的簡要說明：
   eim/
 	  config/ 
-		  routes	<--  請求路由的配置
+		  routes <--  請求路由的配置
 	  db/ 
-		  schema	<--  數據表格的概要
-		  seeds	<--  預先數據的創建腳本
+		  schema <--  數據表格的概要
+		  seeds	 <--  預先數據的創建腳本
 	  app/
 		  assests/ <--  前端靜態資源	
 			  javascripts/	<-- 頁面載入時運行的動態腳本, 依照腳本意圖拆分成更細粒度的腳本, 
-							設計目標為:使腳本的實現可以被模塊化、可被復用
+					    (設計目標為:使腳本的實現可以被模塊化、可被復用)
 				DEMO/
 					component/
 					core/
@@ -82,18 +82,18 @@
 				 application.css
 				 
 		  controllers/ 	<-- 後台Controller部份的代碼
-			  demo/	<--  依據意圖劃分為demo scope controller
+			  demo/	<-- 依據意圖劃分為demo scope controller
 			  
-		  helpers/	<-- 後台幫助方法的代碼
+		  helpers/ <-- 後台幫助方法的代碼
 		  
-		  models/	<-- 後台數據模型的代碼
+		  models/ <-- 後台數據模型的代碼
 		  
-		  views/		<-- 後台View部份的代碼
-			  demo/	<--  demo scope View樣板 (與demo scope controller相對應)
+		  views/ <-- 後台View部份的代碼
+			  demo/	<-- demo scope View樣板 (與demo scope controller相對應)
 			  
-			  layouts/  <-- View 布局部份
+			  layouts/ <-- View 布局部份
 				DEMO/ <-- 為demo意圖, 定制DEMO布局, 包含一套父布局 --- template, 
-						      兩套子布局：main與sessionless(皆繼承至 template布局)
+					  兩套子布局：main與sessionless(皆繼承至 template布局)
 				      main.html.erb
 				      sessionless.html.erb
 				      template.html.erb		      
