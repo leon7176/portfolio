@@ -34,12 +34,7 @@ class PagesController < ApplicationController
 
   end
 
-  def help
-  end
+  # Skip some parts of content
+  # ...
 
-  def about
-  end
-
-  def contact
-  end
 end
