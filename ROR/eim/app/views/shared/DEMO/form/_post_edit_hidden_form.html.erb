@@ -1,0 +1,11 @@
+<div id="edit_post_hidden" style="display:none">
+  <%= form_tag('/posts/:post_id', method: :put, remote: true) do %>
+    <%= hidden_field_tag('private_flag', false) %>
+    <%= hidden_field_tag('post_type_id', '0') %>
+    <%= hidden_field_tag('values') %>
+    <%= hidden_field_tag('person_hint_normal') %>
+    <%= hidden_field_tag('person_hint_append') %>
+    <%= hidden_field_tag('group_hint_normal') %>
+    <%= hidden_field_tag('group_hint_append') %>   
+  <% end %>
+</div>

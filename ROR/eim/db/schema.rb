@@ -16,14 +16,6 @@ ActiveRecord::Schema.define(version: 20141124080454) do
   # Skip some parts of content
   # ....
 
-  create_table "conversation_receivers", force: true do |t|
-    t.integer  "conversation_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "post_id"
-  end
-
   create_table "conversations", force: true do |t|
     t.integer  "network_id"
     t.boolean  "private_flag", default: false

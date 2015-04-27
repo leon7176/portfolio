@@ -1,2 +1,0 @@
-module Demo::ConversationsHelper
-end

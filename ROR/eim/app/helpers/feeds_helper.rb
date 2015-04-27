@@ -16,37 +16,6 @@ module FeedsHelper
   FILTER_USER_UNREAD = 13
   FILTER_SEARCH_ALL = 14
 
-  # Obsoleted
-  def user_conversations(user, older_than_datetime_str, size, network_id)
-    datetimeFilter = ''
-    unless older_than_datetime_str.blank?
-          datetimeFilter = 'conversations.updated_at < "' + older_than_datetime_str + '"'
-    end
-    user.conversations_joined.joins('INNER JOIN `users` ON `users`.`id` = `conversations`.`user_id`')
-                             .joins('INNER JOIN `network_users` ON `users`.`id` = `network_users`.`user_id` AND `network_users`.`network_id` = ' + network_id.to_s)
-                             .where(datetimeFilter)
-                             .where('conversations.remove_flag = ?', false)
-                             .where('conversations.private_flag = ?', false)
-                             .where('users.remove_flag = ?', false)
-                             .order('conversations.updated_at DESC').take(size)
-  end
-
-  # Obsoleted
-  def group_conversations(group, older_than_datetime_str, size, network_id)
-    datetimeFilter = ''
-    unless older_than_datetime_str.blank?
-          datetimeFilter = 'conversations.updated_at < "' + older_than_datetime_str + '"'
-    end
-
-    conversations = group.conversations
-                             .joins('INNER JOIN `users` ON `users`.`id` = `conversations`.`user_id`')
-                             .joins('INNER JOIN `network_users` ON `users`.`id` = `network_users`.`user_id` AND `network_users`.`network_id` = ' + network_id.to_s)
-                             .where(datetimeFilter)
-                             .where('conversations.remove_flag = ?', false)
-                             .where('users.remove_flag = ?', false)
-                             .order('conversations.updated_at DESC').take(size)
-  end
-
   def self.filter_id(main_filter, sub_filter)
     id = FILTER_ALL_ALL
 
@@ -68,12 +37,10 @@ module FeedsHelper
       else
         id = FILTER_MYPOST_ALL
       end
-    elsif main_filter == 'pinned'
-      if sub_filter == 'unread'
-        id = FILTER_PINNED_UNREAD
-      else
-        id = FILTER_PINNED_ALL
-      end
+
+    # Skip some parts of content
+    # ...
+    
     elsif main_filter == 'group'
       if sub_filter == 'unread'
         id = FILTER_GROUP_UNREAD
@@ -309,17 +276,7 @@ module FeedsHelper
     conversation_datetimeFilter
   end
 
-  def _messages_datatime_filter(older_than_utc_datetime_str, options)
-    messages_datetimeFilter = ''
-    unless older_than_utc_datetime_str.blank?
-      if options[:is_for_older_than] == 'true'
-        messages_datetimeFilter = 'messages.updated_at < "' + older_than_utc_datetime_str + '"'
-      else
-        messages_datetimeFilter = 'messages.updated_at > "' + older_than_utc_datetime_str + '"'
-      end
-    end
-
-    messages_datetimeFilter
-  end
+  # Skip some parts of content
+  # ...
 
 end

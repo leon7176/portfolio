@@ -1,0 +1,15 @@
+<%= javascript_tag do %>
+
+$(document).ready(function() {
+
+<% flash.each do |name, msg| -%>
+
+(function() {
+		$("#flash-agent").flashAgent("flash", "<%= name %>", "<%= msg %>");
+})();
+
+<% end -%>
+
+});
+
+<% end %>

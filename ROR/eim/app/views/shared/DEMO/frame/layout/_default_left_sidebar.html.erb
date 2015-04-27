@@ -1,0 +1,33 @@
+<% pin_unread_num = current_user.pinned_unread_feeds_count(current_network_id) %>
+
+<div class="sidebar" data-type="default">
+    <ul class="menu-sidebar">
+        <li id="menu-sidebar-home-feeds">
+            <a href="<%= feeds_path %>">
+                <span class="icone icone-feed"></span>
+                <%= t :feeds, scope: [:default_left_sidebar] %>
+            </a>
+        </li>        
+        <li id="menu-sidebar-pinned-feeds">
+            <a href="<%= pins_path %>">
+                <span class="icone icone-pin"></span>
+                <%= t :my_pinned, scope: [:default_left_sidebar] %>
+            </a>
+            <% if pin_unread_num > 0 %>
+                <span class="count"><%= pin_unread_num %></span>
+            <% end %>
+        </li>
+        <%= render 'shared/DEMO/frame/layout/left_sidebar_group_list' %>
+        <li>
+            <a href="http://www.linpus.com/">
+                <span class="icone icone-help"></span>
+                <%= t :help, scope: [:default_left_sidebar] %>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="menu-sidebar">
+        <%= render 'shared/DEMO/frame/layout/left_sidebar_network_list' %>
+    </ul>
+
+</div>

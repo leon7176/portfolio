@@ -2,31 +2,21 @@ module SessionsHelper
 
   def sign_in(user)
     remember_token = User.new_remember_token
+    
+    cookies[:remember_token] = # Skip ...
+    cookies[:network_id] = # Skip ...
+    cookies[:network_name] = # Skip ...
+    cookies[:email] = # Skip ...
+    cookies[:locale] = user.locale || I18n.default_locale
+    
+    # Skip some parts of content
+  	# ...
 
-    if user.remember_me
-      cookies.permanent[:remember_token] = remember_token
-      cookies.permanent[:network_id] = user.network_by_id.id
-      cookies.permanent[:network_name] = user.network_by_id.name
-      cookies.permanent[:email] = user.email
-      cookies.permanent[:locale] = user.locale || I18n.default_locale
-    else
-      cookies[:remember_token] = remember_token
-      cookies[:network_id] = user.network_by_id.id
-      cookies[:network_name] = user.network_by_id.name
-      cookies[:email] = user.email
-      cookies[:locale] = user.locale || I18n.default_locale
-    end
-    user.update_attribute(:remember_token, User.encrypt(remember_token))
     self.current_user = user
   end
 
-  def email_last_signed_in?
-    !email_last_signed_in.nil?
-  end
-
-  def email_last_signed_in
-    cookies[:email]
-  end
+  # Skip some parts of content
+  # ...
 
   def signed_in?
     !current_user.nil?
@@ -51,13 +41,9 @@ module SessionsHelper
       # redirect_to signin_url, notice: "Please sign in."
       redirect_to root_url
     else
-      if current_user.frozen_flag        
-        sign_out
-        redirect_to root_url, notice: 'You are blacklisted'
-      elsif current_user.remove_flag
-        sign_out
-        redirect_to root_url, notice: 'You are deleted'
-      end
+      
+      # Skip some parts of content
+  		# ...
     end
   end
 
@@ -67,23 +53,8 @@ module SessionsHelper
     redirect_to(root_url) unless current_user?(@user) || current_user.home_network_admin?
   end
 
-  def network_admin_user
-    redirect_to(root_url) unless current_user.network_admin?(current_network_id)
-  end
-
-  def home_network_admin_user
-    redirect_to(root_url) unless current_user.network_admin?(current_user.home_network.id)
-  end
-
-  def group_admin_user
-    group = Group.find(params[:id])
-    redirect_to(feeds_group_url(group)) unless group.has_admin?(current_user)
-  end
-
-  def group_inviter_user
-    group = Group.find(params[:id])
-    redirect_to(feeds_group_url(group)) unless group.inviter?(current_user)
-  end  
+  # Skip some parts of content
+  # ...
 
   def sign_out
     self.current_user = nil
@@ -97,24 +68,8 @@ module SessionsHelper
     cookies.delete(:email)
   end
 
-  def redirect_back_or(default)
-    redirect_to(session[:return_to] || default)
-    session.delete(:return_to)
-  end
-
-  def store_location
-    session[:return_to] = request.url if request.get?
-  end
-
-  def update_current_network_id(id) 
-    if current_user.remember_me
-      cookies.permanent[:network_id] = current_user.network_by_id(id).id
-      cookies.permanent[:network_name] = current_user.network_by_id(id).name
-    else
-      cookies[:network_id] = current_user.network_by_id(id).id
-      cookies[:network_name] = current_user.network_by_id(id).name
-    end
-  end
+	# Skip some parts of content
+  # ...  
 
   def current_network_id
     cookies[:network_id]
@@ -128,16 +83,8 @@ module SessionsHelper
     current_user.network_by_id(current_network_id)
   end
 
-  def current_group_id
-    group_id = current_network.default_group.id
-    if @group
-      group_id = @group.id
-    elsif params[:controller] == 'groups' && params[:id]
-      group = Group.find params[:id]
-      group_id = group.id     
-    end
-    group_id
-  end
+  # Skip some parts of content
+  # ...
 
   def current_group
     @group.nil? ? current_network.default_group : @group

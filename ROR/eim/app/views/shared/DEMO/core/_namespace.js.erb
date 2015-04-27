@@ -1,0 +1,85 @@
+<%= javascript_tag do %>
+
+var EIM = EIM || {};
+
+(function() {
+		EIM.namespace = function(ns_string) {
+				var parts = ns_string.split('.'),
+						parent = EIM,
+						i;
+
+				// strip redundant leading global
+				if (parts[0] === "EIM") {
+						parts = parts.slice(1);
+				}
+
+				for (i = 0; i < parts.length; i += 1) {
+						// create a property if it doesn't exist
+						if (typeof parent[parts[i]] === "undefined") {
+								parent[parts[i]] = {};
+						}
+						parent = parent[parts[i]];
+				}
+				return parent;
+		};
+
+		EIM.namespace('Current');
+
+		EIM.Current['userID'] = <%= current_user.id %>;
+		EIM.Current['groupID'] = <%= current_group_id %>;
+		EIM.Current['networkID'] = <%= current_network_id %>;
+		EIM.Current['defaultGroupID'] = <%= current_network.default_group.id %>;
+		EIM.Current['locale'] = "<%= cookies[:locale] || I18n.default_locale %>";
+
+		EIM.namespace('Constant');
+
+		EIM.namespace('Constant.Post');
+		EIM.Constant.Post = {
+				MaxLength: "2000"
+  	};
+
+  	EIM.namespace('Constant.File');
+		EIM.Constant.File = {
+				MaxSize: "30"		// the unit is 'MB'
+  	};
+
+		// declare Locale constants
+		EIM.namespace('Constant.LocaleType');
+		EIM.Constant.LocaleType = {
+				EN: "en",
+  			ZH_TW: "zh-TW",
+  			ZH_CN: "zh-CN"
+  	};
+
+  	EIM.namespace('Constant.LocaleText');
+  	EIM.Constant.LocaleText = {
+				EN: "EN",
+  			ZH_TW: "繁中",
+  			ZH_CN: "简中"
+  	};  	
+
+		// declare EIM.Constant.PostType
+		EIM.namespace('Constant.PostType');
+
+		<% PostType.all.each do |post_type| %>
+      	EIM.Constant.PostType["<%= post_type[:name] %>"] = <%= PostType.send "#{post_type[:name]}_post_type_id" %>;
+  	<% end %>
+
+  	// declare EIM.Constant.ReqLockType
+  	EIM.namespace('Constant.ReqLockType');
+  	EIM.Constant.ReqLockType = {
+  			FEEDS: "feeds",
+  			FILES: "files",
+  			TASKS: "tasks",
+  			MEMBERS: "members"
+  	};
+
+  	// declare EIM.ReqLocks
+  	EIM.namespace('ReqLocks');
+
+		// TODO to be obseloted
+		// EIM.namespace('Infos');
+
+})();
+
+<% end %>

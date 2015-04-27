@@ -1,0 +1,59 @@
+<header>
+	<div class="header">
+		<section>
+			<a class="logo" href="<%= root_path %>">
+				<h1>Eim</h1>
+				<img src="<%= asset_path 'DEMO/upload/logo.png' %>" />
+			</a>			
+			<div class="header-icons">
+				<a href="javascript:void(0)" class="flag-icon" id="set-locale-btn"></a>
+	      <a href="javascript:void(0)" id="notification-icon"><img src="<%= asset_path 'DEMO/img/notification-icon.png' %>"/><!-- <span class="notif-bubble">10</span> --></a>
+	      <a href="<%= invites_path %>" id="invite-icon"><img src="<%= asset_path 'DEMO/img/invite-icon.png' %>"/></a>
+	      <a href="http://www.linpus.com" id="login-button"><img src="<%= asset_path 'DEMO/img/info.png' %>"/></a>
+	      <a href="<%= feeds_user_path(@current_user) %>" id="profile-link"><img src="<%= asset_path profile_photo_thumb(current_user) %>" title="<%= current_user.name %>"/></a>
+      </div>
+			<form id="search" accept-charset="UTF-8" action="/search" autocomplete="off" method="get">			
+      	<input name="utf8" value="✓" type="hidden">
+				<input type="text" name="search" placeholder="<%= t :search, scope: [:header] %>..." value="" />
+				<input type="submit" value="search" />
+			</form>			
+			<div class="profile-menu-block">
+				<ul id="profile-menu">
+					<li><a href="<%= edit_user_path(@current_user) %>"><%= t :profile, scope: [:header] %></a>
+					</li>
+					<% if current_user.home_network_admin? %>
+					<li><a href="<%= admin_path %>"><%= t :admin, scope: [:header] %></a>
+					</li>
+					<% end %>
+					<li><a href="<%= settings_path %>"><%= t :settings, scope: [:header] %></a>
+					</li>					
+					<li class="last"><%= link_to t(:logout, scope: [:header]), signout_path, method: "delete" %>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+	<div class="menu">
+		<section>
+			<ul id="main-menu">
+				<li><a href="<%= feeds_path %>" class="active"><%= t :home, scope: [:header] %></a>
+				</li>
+				<li><a href="<%= groups_path %>"><%= t :groups, scope: [:header] %></a>
+				</li>
+				<li><a href="<%= tasks_path %>"><%= t :tasks, scope: [:header] %></a>
+				</li>
+				<li><a href="<%= events_path %>"><%= t :events, scope: [:header] %></a>
+				</li>
+				<li><a href="<%= files_path %>"><%= t :files, scope: [:header] %></a>
+				</li>
+				<li><a href="<%= users_path %>"><%= t :people, scope: [:header] %></a>
+				</li>
+				<% if current_user.home_network_admin? && params[:controller] == "admin/pages" %>
+				<li><a href="<%= admin_path %>"><%= t :admin, scope: [:header] %></a>
+				</li>
+				<% end %>
+			</ul>
+		</section>
+	</div>
+</header>
+

@@ -1,0 +1,66 @@
+<ul class="tabs">
+    <li class="post opentab active" data-tab="post">
+        <img src="<%= asset_path 'DEMO/img/pen.png' %>" />Share a post</li>
+    <li class="opentab" data-tab="poll">
+        <img src="<%= asset_path 'DEMO/img/radio-red.png' %>" />Post a poll</li>
+    <li class="tabmore" data-tab="more">
+        <img src="<%= asset_path 'DEMO/img/cross.png' %>" />More
+        <div class="menumore">
+            <a href="javascript:void(0)" id="create_task_btn">Create a Task</a>
+            <a href="javascript:void(0)" id="create_event_btn">Create an Event</a>
+        </div>
+    </li>
+</ul>
+
+<ul class="windows" style="display: block">
+    <li id="post" class="active">
+        <form id="sharepost" data-type="normal">
+            <textarea name="message" class="toresize" placeholder="Post Something ..."></textarea>
+            <div class="writeto toshow left">
+                <label>To :</label>
+                <input type="text" class="group-chooser" id="postupdateto" name="postupdateto" />                
+            </div>
+            <input class="left toshow" type="submit" value="Post" />
+            <div class="clear"></div>
+            <div class="attach-files file-uploader">
+                <input type="file" name="file[]" />
+                <ul class="filelist">
+                </ul>
+            </div>
+        </form>
+    </li>
+    <li id="poll">
+        <form id="postpoll" data-type="poll">
+            <textarea name="message" class="toresize" placeholder="Enter your question..."></textarea>
+            <div class="row">
+                <label class="answer">A</label>
+                <input type="text" class="answer-text" name="answera" placeholder="Answer"/>
+            </div>
+            <div class="row">
+                <label class="answer">B</label>
+                <input type="text" class="answer-text" name="answerb" placeholder="Answer"/>
+            </div>
+            <div class="row">
+                <label class="answer">C</label>
+                <input type="text" class="answer-text" name="answerc" placeholder="Answer"/>
+            </div>
+            <br>
+            <div class="writeto toshow left">
+                <label>To :</label>
+                <input type="text" class="group-chooser" id="postpollto" name="postpollto" />
+                <input class="left" type="submit" value="Post"/>                
+            </div>
+            <div class="clear"></div>
+            <div class="attach-files file-uploader">
+                <input type="file" name="file[]" />
+                <ul class="filelist">
+                </ul>
+            </div>
+            <br>
+            
+            <br>
+        </form>
+    </li>
+    <li id="more">
+    </li>
+</ul>

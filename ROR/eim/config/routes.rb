@@ -8,7 +8,12 @@ Eim::Application.routes.draw do
 
     # Pages routes
     match '/feeds', to: 'pages#home', via:'get'    
-    match '/help', to: 'pages#help', via:'get'
+    
+    # Skip some parts of content
+    # ...
+
+    #Home entries routes
+    match '/logout', to: 'home_entries#logout', via:'get'
 
     # Skip some parts of content
     # ...
@@ -17,13 +22,11 @@ Eim::Application.routes.draw do
     resources :sessions, only: [:new, :create, :destroy]
     match '/signin', to: 'sessions#new', via:'get'
     match '/signout', to: 'sessions#destroy', via:'delete'
-    match '/api/signin', to: 'sessions#signin', via:'get'
 
     # Skip some parts of content
     # ...
 
-    #Search routes
-    resources :search, only: [:index]
+    #Search routes    resources :search, only: [:index]
     get 'search/user', to: 'search#search_user_hint'
     get 'search/group', to: 'search#search_group_hint'
 
@@ -31,19 +34,16 @@ Eim::Application.routes.draw do
     resources :users, only: [:create, :index, :edit, :update] do
       member do
         get :feeds
-        get :password, to: :edit_password
-        patch :password, to: :update_password
-        # get :suggested_groups
+				# Skip some parts of content
+    		# ...        
       end
       post :upload, on: :new, to: :upload_image
-    end
-    match '/signup/register', to: 'users#register', via:'post'
+    end    
 
-    match '/api/users/(:id)/info', to: 'users#info', via:'get'
-    match '/api/users/(:id)/follow', to: 'users#follow', via:'get'
-    match '/api/users/(:id)/unfollow', to: 'users#unfollow', via:'get'
-    match '/api/users/(:id)/invite', to: 'users#invite', via:'get'
-    match '/api/users/(:id)/setup_locale', to: 'users#setup_locale', via:'get'
+    match '/api/users/(:id)/info', to: 'users#info', via:'get'    
+
+    # Skip some parts of content
+    # ...
 
     #Groups routes
     resources :groups, only: [:index, :create, :update] do
@@ -56,20 +56,9 @@ Eim::Application.routes.draw do
     match '/api/groups/(:id)/join', to: 'groups#join', via:'get'
     match '/api/groups/(:id)/leave', to: 'groups#leave', via:'get'
     match '/api/groups/(:id)/delete', to: 'groups#delete', via:'get'
-    match '/api/groups/(:id)/approve', to: 'groups#approve', via:'get'
-    match '/api/groups/(:id)/deny', to: 'groups#deny', via:'get'
 
     # Skip some parts of content
     # ...
-
-    match '/api/groups/(:id)/add_members', to: 'groups#add_members', via:'get'
-    match '/api/groups/(:id)/remove_member', to: 'groups#remove_member', via:'get'
-    match '/api/groups/(:id)/make_admin', to: 'groups#make_admin', via:'get'
-
-    # Skip some parts of content
-    # ...
-    
-    match '/api/groups/validate', to: 'groups#validate', via:'get'
 
     #Conversations routes
     resources :conversations, only: [:show]
@@ -78,17 +67,16 @@ Eim::Application.routes.draw do
     match '/api/conversations/(:id)/unfollow', to: 'conversations#unfollow', via:'get'
 
     # Skip some parts of content
-    # ...
-    
-    match '/api/conversations/(:id)/read', to: 'conversations#read', via:'get'
-    match '/api/conversations/(:id)/unread', to: 'conversations#unread', via:'get'    
+    # ...   
 
     #Posts routes
     resources :posts, only: [:create, :update]
     match '/api/posts/(:id)/info', to: 'posts#info', via:'get'
     match '/api/posts/(:id)/like', to: 'posts#like', via:'get'
     match '/api/posts/(:id)/unlike', to: 'posts#unlike', via:'get'
-    match '/api/posts/(:id)/delete', to: 'posts#delete', via:'get'
+    
+    # Skip some parts of content
+    # ...
 
     # API routes
     match '/api/users', to: 'api#users', via:'get'
@@ -97,12 +85,11 @@ Eim::Application.routes.draw do
     match '/api/feeds', to: 'api#feeds', via:'get'
     match '/api/unread_feeds_count', to: 'api#unread_feeds_count', via:'get'
 
-    # for Networks
-    match '/api/networks/(:id)/info', to: 'api#networks_info', via:'get'
+    # Skip some parts of content
+    # ...    
 
     # for Searches
     match '/api/searches/users', to: 'api#searches_users', via:'get'
-    match '/api/searches/groups', to: 'api#searches_groups', via:'get' 
 
     # Skip some parts of content
     # ...

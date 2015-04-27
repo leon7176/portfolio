@@ -1,0 +1,48 @@
+<%= javascript_tag do %>
+
+var EIM = EIM || {};
+
+(function() {
+		EIM.namespace = function(ns_string) {
+				var parts = ns_string.split('.'),
+						parent = EIM,
+						i;
+
+				// strip redundant leading global
+				if (parts[0] === "EIM") {
+						parts = parts.slice(1);
+				}
+
+				for (i = 0; i < parts.length; i += 1) {
+						// create a property if it doesn't exist
+						if (typeof parent[parts[i]] === "undefined") {
+								parent[parts[i]] = {};
+						}
+						parent = parent[parts[i]];
+				}
+				return parent;
+		};
+
+		EIM.namespace('Current');
+
+		EIM.Current['locale'] = "<%= cookies[:locale] || I18n.default_locale %>";
+
+		EIM.namespace('Constant');
+
+		// declare Locale constants
+		EIM.namespace('Constant.LocaleType');
+		EIM.Constant.LocaleType = {
+				EN: "en",
+  			ZH_TW: "zh-TW",
+  			ZH_CN: "zh-CN"
+  	};
+
+  	EIM.namespace('Constant.LocaleText');
+  	EIM.Constant.LocaleText = {
+				EN: "EN",
+  			ZH_TW: "繁中",
+  			ZH_CN: "简中"
+  	};
+})();
+
+<% end %>
