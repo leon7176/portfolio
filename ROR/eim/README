@@ -1,13 +1,66 @@
-* 簡要說明此代碼倉庫的意圖:
-  1. 對原 EIM 項目代碼進行裁剪, 作為個人展示使用。
-  2. 表現基於 Rails Framework 作的設計:
+* 關於此代碼倉庫的意圖：
+  - 對原 EIM 項目代碼進行裁剪, 作為個人代碼展示。
+  - 表現基於 Rails Framework 作的設計:
     i. 目錄層級設計
     ii. 前/後端代碼
     iii. 後端Web API (數據提交/請求)接口設計
     iv. 前端異步編程
    
-*代碼庫目錄結構說明
-- 提取了 首頁面(用戶未登入)/登入頁面/首頁面(用戶已登入)
-- 
-*設計目標
-*解決代碼架構上的問題
+* 代碼倉庫的說明：
+  - 提取了 以下頁面(包含 routes/controller/view 部份的代碼):
+    1. 產品首頁面(介紹頁面)
+    2. 用戶登入頁面
+    3. 首頁面(用戶已登入) 
+    
+ * 目錄結構/文件的說明：
+  eim/
+	  config/ 
+		  routes	<--  請求路由的配置
+	  db/ 
+		  schema	<--  數據表格的概要
+		  seeds	<--  預先數據的創建腳本
+	  app/
+		  assests/ <--  前端靜態資源	
+			  javascripts/	<-- 頁面載入時運行的動態腳本, 依照腳本意圖拆分成更細粒度的腳本, 設計目標為:使腳本的實現可以被模塊化、可被復用
+				DEMO/
+					component/
+					core/
+						api.js
+						model.js
+						utils.js
+					frame/
+					page/
+					script.js
+					sessionless-script.js
+				application.js
+				
+			  stylesheets/	<-- 頁面載入時需要套用的樣式規則
+				 DEMO/
+					style.css.erb
+					sessionless-style.css.erb
+				 application.css
+				 
+		  controllers/ 	<-- 後台Controller部份的代碼
+			  demo/	<--  依據意圖劃分為demo scope controller
+			  
+		  helpers/	<-- 後台幫助方法的代碼
+		  
+		  models/	<-- 後台數據模型的代碼
+		  
+		  views/		<-- 後台View部份的代碼
+			  demo/	<--  demo scope View樣板 (與demo scope controller相對應)
+			  
+			  layouts/  <-- View 布局部份
+				DEMO/ <-- 為demo意圖, 定制DEMO布局, 包含一套父布局 --- template, 兩套子布局：main與sessionless(皆繼承至 template布局)
+				      main.html.erb
+				      sessionless.html.erb
+				      template.html.erb		      
+				      
+			  shared/ <--  View 可重用的局部樣板 部份, 依照意圖做了以下分類
+				DEMO/
+					core/
+					form/
+					frame/
+						layout/
+					helper/
+  
